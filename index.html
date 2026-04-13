@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PropManager — Dashboard Inmobiliario</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+    SIDEBAR — Navegación lateral (equivalente a un componente <Sidebar />)
+    En React esto sería un componente separado con props para el ítem activo.
+  ============================================================ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__brand">
+      <div class="sidebar__logo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M3 9.5L12 3L21 9.5V20C21 20.55 20.55 21 20 21H15V15H9V21H4C3.45 21 3 20.55 3 20V9.5Z" fill="currentColor"/>
+        </svg>
+      </div>
+      <span class="sidebar__name">PropManager</span>
+    </div>
+
+    <nav class="sidebar__nav">
+      <p class="sidebar__label">Principal</p>
+      <ul class="sidebar__list">
+        <li class="sidebar__item sidebar__item--active" data-view="dashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" fill="currentColor"/><rect x="14" y="3" width="7" height="7" rx="1" fill="currentColor" opacity=".5"/><rect x="3" y="14" width="7" height="7" rx="1" fill="currentColor" opacity=".5"/><rect x="14" y="14" width="7" height="7" rx="1" fill="currentColor" opacity=".5"/></svg>
+          <span>Dashboard</span>
+        </li>
+        <li class="sidebar__item" data-view="propiedades">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 9.5L12 3L21 9.5V20C21 20.55 20.55 21 20 21H15V15H9V21H4C3.45 21 3 20.55 3 20V9.5Z" fill="currentColor"/></svg>
+          <span>Propiedades</span>
+        </li>
+        <li class="sidebar__item" data-view="inquilinos">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="7" r="4" fill="currentColor"/><path d="M3 20C3 17 5.7 15 9 15s6 2 6 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="17" cy="9" r="3" fill="currentColor" opacity=".5"/><path d="M19 20c0-2-1.3-3.5-3-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".5"/></svg>
+          <span>Inquilinos</span>
+        </li>
+        <li class="sidebar__item" data-view="contratos">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 7h8M8 11h8M8 15h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span>Contratos</span>
+        </li>
+      </ul>
+
+      <p class="sidebar__label">Finanzas</p>
+      <ul class="sidebar__list">
+        <li class="sidebar__item" data-view="ingresos">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span>Ingresos</span>
+        </li>
+        <li class="sidebar__item" data-view="reportes">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span>Reportes</span>
+        </li>
+      </ul>
+
+      <p class="sidebar__label">Sistema</p>
+      <ul class="sidebar__list">
+        <li class="sidebar__item" data-view="configuracion">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" fill="currentColor"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" stroke-width="2"/></svg>
+          <span>Configuración</span>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar__user">
+      <div class="sidebar__avatar">GM</div>
+      <div class="sidebar__userinfo">
+        <span class="sidebar__username">Gonzalo M.</span>
+        <span class="sidebar__role">Administrador</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============================================================
+    CONTENIDO PRINCIPAL
+    En React: <main> sería el área donde se renderizan las rutas/vistas.
+  ============================================================ -->
+  <div class="main-wrapper">
+
+    <!-- NAVBAR TOP — equivalente a <Topbar /> en React -->
+    <header class="topbar">
+      <div class="topbar__left">
+        <button class="topbar__toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="topbar__breadcrumb">
+          <span class="topbar__breadcrumb-root">PropManager</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span id="topbarTitle">Dashboard</span>
+        </div>
+      </div>
+      <div class="topbar__right">
+        <button class="topbar__btn" id="btnAgregarPropiedad">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+          Nueva Propiedad
+        </button>
+        <div class="topbar__notif" title="Alertas">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="topbar__badge" id="notifBadge">3</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ÁREA DE CONTENIDO PRINCIPAL -->
+    <main class="content" id="mainContent">
+
+      <!-- == SECCIÓN: MÉTRICAS KPI == -->
+      <!-- En React esto sería: <MetricsGrid metrics={metricsData} /> -->
+      <section class="section" id="sectionMetrics">
+        <div class="section__header">
+          <h1 class="section__title">Resumen General</h1>
+          <span class="section__subtitle">Actualizado hoy · Abril 2026</span>
+        </div>
+        <!-- Las tarjetas se generan dinámicamente desde JS -->
+        <div class="metrics-grid" id="metricsGrid"></div>
+      </section>
+
+      <!-- == SECCIÓN: TABLA DE PROPIEDADES == -->
+      <!-- En React: <PropiedadesTable data={propiedades} onFilter={handleFilter} /> -->
+      <section class="section" id="sectionPropiedades">
+        <div class="section__header">
+          <h2 class="section__title">Propiedades</h2>
+          <!-- FILTROS — en React serían controlled inputs con useState -->
+          <div class="filter-bar" id="filterBar">
+            <button class="filter-btn filter-btn--active" data-filter="todos">Todos</button>
+            <button class="filter-btn" data-filter="activo">Activos</button>
+            <button class="filter-btn" data-filter="disponible">Disponibles</button>
+            <button class="filter-btn" data-filter="por_vencer">Por Vencer</button>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="prop-table" id="propTable">
+            <thead>
+              <tr>
+                <th>Propiedad</th>
+                <th>Tipo</th>
+                <th>Inquilino</th>
+                <th>Alquiler / mes</th>
+                <th>Vencimiento</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <!-- El tbody se puebla dinámicamente desde JS -->
+            <tbody id="propTableBody"></tbody>
+          </table>
+        </div>
+
+        <div class="table-empty" id="tableEmpty" style="display:none">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" opacity=".3"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <p>No se encontraron propiedades con ese filtro.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ============================================================
+    MODAL — Agregar nueva propiedad
+    En React esto sería un <Modal /> con portal y useState para open/close
+  ============================================================ -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal__header">
+        <h3 class="modal__title" id="modalTitle">Nueva Propiedad</h3>
+        <button class="modal__close" id="modalClose" aria-label="Cerrar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <!-- Campos del formulario -->
+        <div class="form-group">
+          <label class="form-label" for="inputNombre">Nombre / Dirección</label>
+          <input class="form-input" type="text" id="inputNombre" placeholder="Ej: Av. Corrientes 1234, CABA" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="inputTipo">Tipo</label>
+            <select class="form-input" id="inputTipo">
+              <option value="Departamento">Departamento</option>
+              <option value="Casa">Casa</option>
+              <option value="Oficina">Oficina</option>
+              <option value="Local comercial">Local comercial</option>
+              <option value="PH">PH</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inputAlquiler">Alquiler mensual ($)</label>
+            <input class="form-input" type="number" id="inputAlquiler" placeholder="Ej: 850000" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="inputInquilino">Inquilino</label>
+            <input class="form-input" type="text" id="inputInquilino" placeholder="Nombre completo (opcional)" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inputVencimiento">Vencimiento contrato</label>
+            <input class="form-input" type="date" id="inputVencimiento" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="inputEstado">Estado inicial</label>
+          <select class="form-input" id="inputEstado">
+            <option value="disponible">Disponible</option>
+            <option value="activo">Activo</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--ghost" id="modalCancel">Cancelar</button>
+        <button class="btn btn--primary" id="modalSave">Guardar Propiedad</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST — Notificación emergente temporal -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
